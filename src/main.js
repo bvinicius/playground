@@ -9,12 +9,7 @@ const routes = [
   { path: '/home', component: Home}
 ]
 
-const router = new VueRouter({
-  routes
-})
-
 new Vue({
   vuetify,
-  router,
   render: h => h(App)
 }).$mount('#app')
