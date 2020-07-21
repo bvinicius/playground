@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import TodoList from '../views/TodoList.vue'
 
 Vue.use(VueRouter)
 
@@ -11,6 +12,11 @@ Vue.use(VueRouter)
     name: 'Home',
     component: Home
   },
+  {
+    path: '/todolist',
+    name: 'Todo List',
+    component: TodoList
+  }
 ]
 
 const router = new VueRouter({
