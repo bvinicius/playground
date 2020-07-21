@@ -45,7 +45,7 @@
       source: String,
     },
     data: () => ({
-      drawer: null,
+      drawer: false,
     }),
     created () {
       this.$vuetify.theme.dark = true
