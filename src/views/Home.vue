@@ -1,20 +1,23 @@
- 
 <template>
-    <v-container>
-        <h1>teste</h1>
-    </v-container>
-</template>
+  <v-main style="height:100%">
+    <v-row justify="center">
+      <v-col cols="4" align="center">
+        <div class="text-h3">Welcome!</div>
+      </v-col>
+    </v-row>
 
+    <v-row justify="center">
+      <v-col cols="4" align="center">
+        <div class="text-h5">This is my application.</div>
+      </v-col>
+    </v-row>
+
+  </v-main>
+</template>
+  
 <script>
-  export default {
-    props: {
-      source: String,
-    },
-    data: () => ({
-      drawer: false,
-    }),
-    created () {
-      this.$vuetify.theme.dark = true
-    },
-  }
+
+export default {
+  name: 'Home',
+}
 </script>

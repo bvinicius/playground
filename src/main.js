@@ -1,15 +1,12 @@
 import Vue from 'vue'
 import App from './App.vue'
 import vuetify from './plugins/vuetify';
-import Home from './views/Home';
+import router from './router'
 
 Vue.config.productionTip = false
 
-const routes = [
-  { path: '/home', component: Home}
-]
-
 new Vue({
   vuetify,
+  router,
   render: h => h(App)
 }).$mount('#app')
