@@ -11,10 +11,28 @@
     <link href="https://fonts.googleapis.com/css?family=Material+Icons" rel="stylesheet">
   </head>
   <body>
-    <noscript>
-      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-    </noscript>
+
     <div id="app"></div>
     <!-- built files will be auto injected -->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyAg83r75lWFo3LKYEwsFKydbEhv8cp0wos",
+        authDomain: "fir-kickstart-a9d63.firebaseapp.com",
+        databaseURL: "https://fir-kickstart-a9d63.firebaseio.com",
+        projectId: "fir-kickstart-a9d63",
+        storageBucket: "fir-kickstart-a9d63.appspot.com",
+        messagingSenderId: "16423662726",
+        appId: "1:16423662726:web:725a0c6ed461afa8934d07"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+    </script>
   </body>
 </html>
