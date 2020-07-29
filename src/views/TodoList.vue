@@ -40,6 +40,7 @@
 </template>
   
 <script>
+// import { usersCollection } from '../firebase'
 
 export default {
   name: 'TodoList',
