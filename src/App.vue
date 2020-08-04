@@ -20,13 +20,16 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-app-bar
-      app
-      clipped-left
-    >
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-      <v-toolbar-title>{{ $route.name }}</v-toolbar-title>
-    </v-app-bar>
+    <v-slide-y-transition>
+      <v-app-bar
+        app
+        clipped-left
+        v-if="auth.currentUser"
+      >
+        <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+        <v-toolbar-title>{{ $route.name }}</v-toolbar-title>
+      </v-app-bar>
+    </v-slide-y-transition>
 
     <v-main>
       <v-container
@@ -40,9 +43,11 @@
 </template>
 
 <script>
+  import { auth } from './firebase'
   export default {
     data: () => ({
       drawer: false,
+      auth: auth
     }),
     created () {
       this.$vuetify.theme.dark = true

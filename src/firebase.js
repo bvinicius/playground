@@ -1,4 +1,6 @@
 import firebase from 'firebase'
+import 'firebase/auth'
+import 'firebase/firestore'
 
 // Your web app's Firebase configuration
 var firebaseConfig = {
@@ -10,19 +12,19 @@ var firebaseConfig = {
     messagingSenderId: "16423662726",
     appId: "1:16423662726:web:725a0c6ed461afa8934d07"
 };
+
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
-const database = firebase.firestore()
-const usersCollection = database.collection('users')
+//utils
+const db = firebase.firestore()
+const auth = firebase.auth()
+
+//collections
+const usersCollection = db.collection('users')
 
 export {
-    database,
+    db,
+    auth,
     usersCollection
 }
-
-
-
-
-
-  
