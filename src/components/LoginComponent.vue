@@ -46,9 +46,10 @@
                         text
                         color="primary"
                         block
+                        @click="$emit('register')"
                     >
-                        REGISTER 
-                    </v-btn>                
+                        REGISTER
+                    </v-btn>
                 </v-col>
             </v-card-actions>
         </v-card>
@@ -68,9 +69,13 @@ export default {
     }),
 
     methods: {
-        login() {
+        async login() {
             this.$data.loaders.login = true
-            this.$store.dispatch('login', this.credentials)
+            await this.$store.dispatch('login', this.credentials)
+                .catch(err => {
+                    debugger
+                    console.log(err)
+                })
         }
     },
 }

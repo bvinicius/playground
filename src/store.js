@@ -18,9 +18,16 @@ export default new Vuex.Store({
     
     actions: {
         async login({ dispatch }, credentials) {
-            const { user } = await firebase.auth.signInWithEmailAndPassword(credentials.email, credentials.password)
-
-            dispatch('fetchUserProfile', user)
+            return new Promise((resolve, reject) => {
+                firebase.auth.signInWithEmailAndPassword(credentials.email, credentials.password)
+                .then(res => {
+                    dispatch('fetchUserProfile', res.user)
+                    resolve()
+                })
+                .catch(err => {
+                    reject(err)
+                })
+            })
         },
 
         async fetchUserProfile({ commit }, user) {
@@ -30,14 +37,14 @@ export default new Vuex.Store({
             commit('setUserProfile', userProfile.data())
             
             // change route to home
-            router.push('/')
+            router.push('/home')
         },
         
         async logout({ commit }) {
             await firebase.auth.signOut()
-
-            commit('setUserProfile', {})
+            
             router.push('/login')
+            commit('setUserProfile', {})
         }
     }
 })
