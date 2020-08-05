@@ -1,7 +1,6 @@
 <template>
     <v-container>
-        <login-component>
-        </login-component>
+        <login-component></login-component>
     </v-container>
 </template>
 

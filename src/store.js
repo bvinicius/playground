@@ -19,7 +19,7 @@ export default new Vuex.Store({
     actions: {
         async login({ dispatch }, credentials) {
             const { user } = await firebase.auth.signInWithEmailAndPassword(credentials.email, credentials.password)
-            
+
             dispatch('fetchUserProfile', user)
         },
 
@@ -31,6 +31,13 @@ export default new Vuex.Store({
             
             // change route to home
             router.push('/')
-          }        
+        },
+        
+        async logout({ commit }) {
+            await firebase.auth.signOut()
+
+            commit('setUserProfile', {})
+            router.push('/login')
+        }
     }
 })

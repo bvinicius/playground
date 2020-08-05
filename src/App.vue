@@ -4,8 +4,13 @@
       v-model="drawer"
       app
       clipped
+      v-if="auth.currentUser"
     >
-      <v-list dense>
+      <v-list
+        dense
+        style="height:100%"
+        class="flex-column"
+      >
         <v-list-item
           link
           @click="$router.push('/todolist'); drawer = !drawer"
@@ -15,6 +20,20 @@
             </v-list-item-action>
             <v-list-item-content>
               <v-list-item-title>Todo List</v-list-item-title>
+            </v-list-item-content>
+        </v-list-item>
+
+        <v-divider></v-divider>
+
+        <v-list-item
+          link
+          @click="$store.dispatch('logout')"
+          >
+            <v-list-item-action>
+              <v-icon>logout</v-icon>
+            </v-list-item-action>
+            <v-list-item-content>
+              <v-list-item-title>Logout</v-list-item-title>
             </v-list-item-content>
         </v-list-item>
       </v-list>
