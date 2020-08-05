@@ -1,5 +1,5 @@
 <template>
-  <v-app id="inspire">
+  <v-app>
     <v-navigation-drawer
       v-model="drawer"
       app
@@ -73,3 +73,9 @@
     },
   }
 </script>
+
+<style lang="scss">
+  html {
+    overflow-y: auto
+  }
+</style>
