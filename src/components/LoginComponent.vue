@@ -38,6 +38,7 @@
                         color="primary"
                         block
                         @click="login()"
+                        :loading="loaders.login"
                     >
                         LOGIN
                     </v-btn>
@@ -60,17 +61,17 @@ export default {
     name: 'login-component',
 
     data: () => ({
-        credentials: {}
+        credentials: {},
+        loaders: {
+            login: false
+        }
     }),
 
     methods: {
         login() {
+            this.$data.loaders.login = true
             this.$store.dispatch('login', this.credentials)
         }
-    }
+    },
 }
 </script>
-
-<style>
-
-</style>

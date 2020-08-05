@@ -19,18 +19,17 @@ export default new Vuex.Store({
     actions: {
         async login({ dispatch }, credentials) {
             const { user } = await firebase.auth.signInWithEmailAndPassword(credentials.email, credentials.password)
-    
+            
             dispatch('fetchUserProfile', user)
         },
 
         async fetchUserProfile({ commit }, user) {
             // fetch user profile
             const userProfile = await firebase.usersCollection.doc(user.uid).get()
-      
             // set user profile in state
             commit('setUserProfile', userProfile.data())
             
-            // change route to dashboard
+            // change route to home
             router.push('/')
           }        
     }
