@@ -5,6 +5,7 @@ import App from './App.vue'
 import vuetify from './plugins/vuetify';
 import router from './router'
 import store from './store'
+import toastr from './plugins/toastr'
 import { auth } from './firebase'
 
 Vue.config.productionTip = false
@@ -17,6 +18,7 @@ auth.onAuthStateChanged(user => {
       vuetify,
       router,
       store,
+      toastr,
       render: h => h(App)
     }).$mount('#app')
   }

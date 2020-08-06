@@ -73,8 +73,8 @@ export default {
             this.$data.loaders.login = true
             await this.$store.dispatch('login', this.credentials)
                 .catch(err => {
-                    debugger
-                    console.log(err)
+                    this.$toastr.e(err)
+                    this.loaders.login = false
                 })
         }
     },
