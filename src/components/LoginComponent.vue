@@ -46,7 +46,7 @@
                         text
                         color="primary"
                         block
-                        @click="$emit('register')"
+                        @click="$emit('register', credentials)"
                     >
                         REGISTER
                     </v-btn>

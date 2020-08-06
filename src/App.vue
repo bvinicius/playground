@@ -4,7 +4,6 @@
       v-model="drawer"
       app
       clipped
-      v-if="auth.currentUser"
     >
       <v-list
         dense
@@ -27,7 +26,7 @@
 
         <v-list-item
           link
-          @click="$store.dispatch('logout')"
+          @click="logout()"
           >
             <v-list-item-action>
               <v-icon>logout</v-icon>
@@ -71,6 +70,12 @@
     created () {
       this.$vuetify.theme.dark = true
     },
+    methods: {
+      logout() {
+        this.drawer = false
+        this.$store.dispatch('logout')
+      }
+    }
   }
 </script>
 
@@ -78,4 +83,5 @@
   html {
     overflow-y: auto
   }
+
 </style>
