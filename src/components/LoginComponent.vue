@@ -11,13 +11,14 @@
                 </v-col>
             </v-row>
 
-            <v-form>
+            <v-form v-model="form">
                 <v-row justify="center">
                     <v-col cols="6">
                         <v-text-field
                             filled
                             label="Email"
                             v-model="credentials.email"
+                            :rules="rules.email"
                         />
                     </v-col>
                     <v-col cols="6">
@@ -26,6 +27,7 @@
                             type="password"
                             label="Password"
                             v-model="credentials.password"
+                            :rules="rules.password"
                         />
                     </v-col>              
                 </v-row>
@@ -39,6 +41,7 @@
                         block
                         @click="login()"
                         :loading="loaders.login"
+                        :disabled="!form"
                     >
                         LOGIN
                     </v-btn>
@@ -63,8 +66,18 @@ export default {
 
     data: () => ({
         credentials: {},
+        form: false,
         loaders: {
             login: false
+        },
+
+        rules: {
+        email: [  
+            v => !!v || 'E-mail is required.'
+        ],
+        password: [
+            v => !!v || 'Password is required.'
+        ]
         }
     }),
 
