@@ -21,10 +21,10 @@
         <v-row justify="center">
           <v-col cols="12">
             <v-list class="py-0">
-              <v-slide-y-transition group>
+              <v-scroll-y-transition group>
                 <v-list-item
                   link
-                  v-for="(item, i) in tasks" :key="i"
+                  v-for="(item, i) in showtasks" :key="i"
                   @click="item.done = !item.done"
                 >
                   <v-list-item-action>
@@ -34,7 +34,7 @@
                     {{ item.name }}
                   </v-list-item-content>
                 </v-list-item>
-              </v-slide-y-transition>
+              </v-scroll-y-transition>
             </v-list>
           </v-col>
         </v-row>
@@ -44,9 +44,9 @@
             <v-btn-toggle
               tile
             >
-              <v-btn>All</v-btn>
-              <v-btn>To do</v-btn>
-              <v-btn>Done</v-btn>
+              <v-btn @click="filter = ''">All</v-btn>
+              <v-btn @click="filter = 'done'">To do</v-btn>
+              <v-btn @click="filter = 'todo'">Done</v-btn>
             </v-btn-toggle>
           </v-row>
         </v-card-actions>
@@ -62,19 +62,20 @@
     data: () => ({
       tasks: [],
       newTask: '',
+      filter: '',
 
-      filteropts: [
-        {
-        name: 'Done',
-        value: task => task.done
-        },
-        {
-        name: 'Pending',
-        value: task => !task.done
-        }
-      ],
-
+      filters: {
+        'todo': e => e.done,
+        'done': e => !e.done
+      }
     }),
+
+    computed: {
+      showtasks: function() {
+        if (this.filter) return this.tasks.filter(this.filters[this.filter])
+        return this.tasks
+      }
+    },
 
     methods: {
       addTask() {
