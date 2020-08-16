@@ -11,7 +11,7 @@
                 </v-col>
             </v-row>
 
-            <v-form v-model="form">
+            <v-form v-model="form" @keyup.enter.native="login()">
                 <v-row justify="center">
                     <v-col cols="6">
                         <v-text-field
@@ -24,10 +24,13 @@
                     <v-col cols="6">
                         <v-text-field
                             filled
-                            type="password"
                             label="Password"
                             v-model="credentials.password"
                             :rules="rules.password"
+                            :type="password ? 'password' : 'text'"
+                            :append-icon="password ? 'visibility_off' : 'visibility'"
+                            @click:append="password = !password"
+
                         />
                     </v-col>              
                 </v-row>
@@ -71,6 +74,8 @@ export default {
             login: false
         },
 
+        password: false,
+
         rules: {
         email: [  
             v => !!v || 'E-mail is required.'
@@ -81,15 +86,19 @@ export default {
         }
     }),
 
+    mounted: function() {
+        setTimeout(() => this.password = true, 300)
+    },
+
     methods: {
-        async login() {
+        login: async function() {
             this.$data.loaders.login = true
             await this.$store.dispatch('login', this.credentials)
                 .catch(err => {
                     this.$toastr.e(err)
                     this.loaders.login = false
                 })
-        }
+        },
     },
 }
 </script>
